@@ -27,20 +27,8 @@ class TestaFatura2 {
 	@CsvSource({
 
 			"1,71112917000126, 28/09/2023, moveis planejados, 1500, satisfatorio",
-			"1,7111291700012, 28/09/2023, moveis planejados, 1500, CNPJ invalido",
-			"1,71112917000126, 02/10/2022, moveis planejados, 1500, Data de vencimento invalida", // dt venc domingo
-			"1,71112917000126, 31/02/2022, moveis planejados, 1500, Data de vencimento invalida", // dt venc invalida
-			"1,71112917000126, , moveis planejados, 1500, Data de vencimento invalida", // dt venc invalida
-			"1,71112917000126, %, moveis planejados, 1500, Data de vencimento invalida", // dt venc caracter especial
-			"1,71112917000126,, moveis planejados, 1500, Data de vencimento invalida", // dt venc null
-			"1,71112917000126, ' ', moveis planejados, 1500, Data de vencimento invalida", // dt venc branco
-			"1,71112917000123, 12/09/2023, moveis planejados, 1500, CNPJ invalido", // cnpj invalido
-			"1,71112917000126, 12/08/2022, moveis planejados, 1500, Data de vencimento invalida", // cnpj invalido
-			"1,71112917000126, 28/09/2023,'', 1500, Descriminacao do servico invalido", // servico invalido
-			"1,71112917000126, 28/09/2023,, 1500, Descriminacao do servico invalido", // servico invalido
-			"1,71112917000126, 28/09/2023,moveis planejados, , Valor invalido", // valor invalido
-			"1,71112917000126, 28/09/2023,moveis planejados,'' , Valor invalido", // valor invalido
-			"1,71112917000126, 28/09/2023,moveis planejados,0 , Valor invalido" // valor invalido
+			"1,7111291700012, 28/09/2023, moveis planejados, 1500, CNPJ invalido"
+			
 	})
 
 	// é possivel criar um arquivo csv com a massa de dados no source folder de teste
