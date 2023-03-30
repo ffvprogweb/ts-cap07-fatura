@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import com.fatec.fatura.model.Fatura;
 
-class TestaFatura2 {
+class REQ01EmissaoDaFaturaDD {
 	Fatura fatura = new Fatura();
 
 	public String obtemDataAtual() {

@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import com.fatec.fatura.model.Fatura;
 
-class TestaFatura1 {
+class REQ01EmissaoDaFatura {
 	Fatura fatura = new Fatura();
 	Logger logger = LogManager.getLogger(this.getClass());
 	
