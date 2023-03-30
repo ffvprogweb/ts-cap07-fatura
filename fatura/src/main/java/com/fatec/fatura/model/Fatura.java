@@ -138,10 +138,13 @@ public class Fatura {
 	 * atribui o cnpj vefica se o cnpj é valido
 	 */
 	public String setCnpj(String cnpj) {
-		if (cnpjIsValido(cnpj)) {
-			return cnpj;
-		} else {
-			logger.info(">>>>>> setCnpj invalido ");
+		try {
+			if (cnpjIsValido(cnpj)) {
+				return cnpj;
+			} else {
+				throw new IllegalArgumentException("CNPJ invalido");
+			}
+		} catch (Exception e) {
 			throw new IllegalArgumentException("CNPJ invalido");
 		}
 
