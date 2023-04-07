@@ -33,15 +33,15 @@ class REQ01EmissaoDaFatura {
 		try {
 
 			// dado que fatura foi emitida com dados validos
-			// quando instancio o objeto
+			// quando confirmo a fatura
 		
-			fatura = new Fatura(1, "71112917000126", "02/10/2023", "moveis planejados", "1500");
-			// entao fatura nao e nula e a data de emisssao é igual a data de hoje
+			fatura = new Fatura(1, "71112917000126", "02/10/2023", "moveis planejados", "9999999999999999999999999999999991500");
+			// entao fatura é registrada com data de emisssao é igual a data de hoje
 			assertNotNull(fatura);
 			String dataDeHoje = obtemDataAtual();
 			assertTrue(dataDeHoje.equals(fatura.getDataEmissao()));
 		} catch (Exception e) {
-			logger.info(">>>>>> nao deveria falhar => " + e.getMessage());
+			logger.info(">>>>>> ct01 - nao deveria falhar => " + e.getMessage());
 			fail("nao deveria falhar fatura valida");
 
 		}
@@ -61,6 +61,19 @@ class REQ01EmissaoDaFatura {
 		} catch (Exception e) {
 			//entao retorna mensagem de cnpj invalido
 			assertEquals ("CNPJ invalido", e.getMessage());
+		}
+		
+	}
+	@Test
+	void ct03_quando_valor_invalido_entao_retorna_msg_erro() {
+		try {
+			// dado que que o valor eh invalido
+			// quando instancio o objeto
+			fatura = new Fatura(1, "71112917000126", "02/10/2023", "moveis planejados", "1x500.00");
+			fail("deveria falhar com valor invalido");
+		} catch (Exception e) {
+			//entao retorna mensagem de erro
+			assertEquals ("Valor invalido", e.getMessage());
 		}
 		
 	}

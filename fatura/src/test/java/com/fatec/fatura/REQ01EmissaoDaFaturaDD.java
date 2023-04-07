@@ -25,10 +25,20 @@ class REQ01EmissaoDaFaturaDD {
 
 	@ParameterizedTest
 	@CsvSource({
-
-			"1,71112917000126, 28/09/2023, moveis planejados, 1500, satisfatorio",
-			"1,7111291700012, 28/09/2023, moveis planejados, 1500, CNPJ invalido"
+			//classes de equivalencia um valido e um invalido por atributo
+			"1,71112917000126, 28/09/2023, moveis planejados, 999999999999991500, satisfatorio",
+			"2,7111291700012, 28/09/2023, moveis planejados, 1500, CNPJ invalido",
+			"3,71112917000126, 28/ 9/2023, moveis planejados, 1500, Data invalida",
+			"4,71112917000126, 28/09/2023, ' ', 1500, Descriminacao do servico invalido",
+			"5,71112917000126, 28/09/2023, moveis planejados, 15x, Valor invalido",
+			//analise do valor limite (selecione limites que sao relevantes para teste)
 			
+			//teste funcional sistematico
+			"4,71112917000126, 28/09/2023, , 1500, Descriminacao do servico invalido"
+			//todos os comandos
+			
+			//todas as arestas
+				
 	})
 
 	// é possivel criar um arquivo csv com a massa de dados no source folder de teste
@@ -39,7 +49,7 @@ class REQ01EmissaoDaFaturaDD {
 			assertNotNull(fatura);
 			String dataDeHoje = obtemDataAtual();
 			assertTrue(dataDeHoje.equals(fatura.getDataEmissao()));
-
+			assertEquals ("satisfatorio", re);
 		} catch (Exception e) {
 			assertEquals(re, e.getMessage());
 		}

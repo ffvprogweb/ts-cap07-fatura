@@ -1,6 +1,8 @@
 package com.fatec.fatura.model;
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.InputMismatchException;
@@ -20,7 +22,7 @@ public class Fatura {
 	String dataEmissao;
 	String dataVencimento;
 	String servicoContratado;
-	float valor;
+	BigDecimal valor;
 	Logger logger = LogManager.getLogger(this.getClass());
 
 	public Fatura(int numero, String cnpj, String dataVencimento, String desc, String valor) {
@@ -47,7 +49,7 @@ public class Fatura {
 		return dataVencimento;
 	}
 
-	public float getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
 
@@ -59,19 +61,15 @@ public class Fatura {
 	}
 
 	public String setDataVencimento(String data) {
-
-		if ((data != null) && (isValida(data) == true) && (dtVencMaiorDtAtual(getDataEmissao(), data) == true) && (ehDomingo(data)) == false) {
+		if ((data != null) && (dataIsValida(data) == true) && (dtVencMaiorDtAtual(getDataEmissao(), data) == true) && (ehDomingo(data)) == false) {
 			logger.info(">>>>>> setDataVencimento  => " + data);
 			return data;
 		} else {
 			throw new IllegalArgumentException("Data de vencimento invalida");
 		}
-
 	}
-
 	public boolean ehDomingo(String data) {
-		if (isValida(data) && data != null) {
-
+		if (dataIsValida(data) && data != null) {
 			DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/yyyy");
 			DateTime umaData = fmt.parseDateTime(data);
 			if (umaData.dayOfWeek().getAsText().equals("domingo")) {
@@ -83,10 +81,9 @@ public class Fatura {
 		} else {
 			return false;
 		}
-
 	}
 
-	public boolean isValida(String data) {
+	public boolean dataIsValida(String data) {
 		if (data != null) {
 			DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 			df.setLenient(false);
@@ -121,15 +118,15 @@ public class Fatura {
 		}
 	}
 
-	public float setValorFatura(String v) {
+	public BigDecimal setValorFatura(String entrada) {
 		try {
-			float temp = Float.parseFloat(v);
-			if (temp > 0) {
-				return Float.parseFloat(v);
-			} else {
-				throw new IllegalArgumentException("Valor invalido");
-			}
-		} catch (Exception e) {
+			BigDecimal temp = new BigDecimal(entrada);
+			DecimalFormat formato = new DecimalFormat("#,##0.00");
+			String valorFormatado = formato.format(temp);
+			logger.info(">>>>>> valor formatado  =>" + valorFormatado);
+			return temp;
+		} catch (NumberFormatException e) {
+			logger.info(">>>>>> valor invalido  =>" + e.getMessage());
 			throw new IllegalArgumentException("Valor invalido");
 		}
 	}
@@ -226,17 +223,6 @@ public class Fatura {
 		return Objects.hash(dataEmissao, dataVencimento, numero, valor);
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Fatura other = (Fatura) obj;
-		return Objects.equals(dataEmissao, other.dataEmissao) && Objects.equals(dataVencimento, other.dataVencimento)
-				&& numero == other.numero && Float.floatToIntBits(valor) == Float.floatToIntBits(other.valor);
-	}
+	
 
 }
