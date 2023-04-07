@@ -30,14 +30,14 @@ class REQ01EmissaoDaFaturaDD {
 			"2,7111291700012, 28/09/2023, moveis planejados, 1500, CNPJ invalido",
 			"3,71112917000126, 28/ 9/2023, moveis planejados, 1500, Data invalida",
 			"4,71112917000126, 28/09/2023, ' ', 1500, Descriminacao do servico invalido",
-			"5,71112917000126, 28/09/2023, moveis planejados, 15x, Valor invalido",
+			"5,71112917000126, 28/09/2023, moveis planejados, 15x, Valor invalido"
 			//analise do valor limite (selecione limites que sao relevantes para teste)
 			
-			//teste funcional sistematico
-			"4,71112917000126, 28/09/2023, , 1500, Descriminacao do servico invalido"
-			//todos os comandos
+			//teste funcional sistematico (2 ct por particao, obrigatorio branco, null e zero, limite de strings e numericos
 			
-			//todas as arestas
+			//analise de cobertura - todos os comandos
+			
+			//analise de cobertura - todas as arestas
 				
 	})
 

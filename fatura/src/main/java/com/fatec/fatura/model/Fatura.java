@@ -61,13 +61,15 @@ public class Fatura {
 	}
 
 	public String setDataVencimento(String data) {
-		if ((data != null) && (dataIsValida(data) == true) && (dtVencMaiorDtAtual(getDataEmissao(), data) == true) && (ehDomingo(data)) == false) {
+		if ((data != null) && (dataIsValida(data) == true) && (dtVencMaiorDtAtual(getDataEmissao(), data) == true)
+				&& (ehDomingo(data)) == false) {
 			logger.info(">>>>>> setDataVencimento  => " + data);
 			return data;
 		} else {
 			throw new IllegalArgumentException("Data de vencimento invalida");
 		}
 	}
+
 	public boolean ehDomingo(String data) {
 		if (dataIsValida(data) && data != null) {
 			DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/yyyy");
@@ -121,10 +123,15 @@ public class Fatura {
 	public BigDecimal setValorFatura(String entrada) {
 		try {
 			BigDecimal temp = new BigDecimal(entrada);
-			DecimalFormat formato = new DecimalFormat("#,##0.00");
-			String valorFormatado = formato.format(temp);
-			logger.info(">>>>>> valor formatado  =>" + valorFormatado);
-			return temp;
+			BigDecimal zero = BigDecimal.ZERO;
+			if (temp.compareTo(zero) > 0) {
+				DecimalFormat formato = new DecimalFormat("#,##0.00");
+				String valorFormatado = formato.format(temp);
+				logger.info(">>>>>> valor formatado  =>" + valorFormatado);
+				return temp;
+			}else {
+				throw new IllegalArgumentException("Valor invalido");
+			}
 		} catch (NumberFormatException e) {
 			logger.info(">>>>>> valor invalido  =>" + e.getMessage());
 			throw new IllegalArgumentException("Valor invalido");
@@ -222,7 +229,5 @@ public class Fatura {
 	public int hashCode() {
 		return Objects.hash(dataEmissao, dataVencimento, numero, valor);
 	}
-
-	
 
 }
