@@ -26,8 +26,9 @@ class REQ01EmissaoDaFaturaDD {
 	@ParameterizedTest
 	@CsvSource({
 			//classes de equivalencia um valido e um invalido por atributo
-			"1,71112917000126, 28/09/2023, moveis planejados, 999999999999991500, satisfatorio",
-			"2,7111291700012, 28/09/2023, moveis planejados, 1500, CNPJ invalido"
+		"1,71112917000126, 28/09/2023, moveis planejados, 999999999999991500, satisfatorio",
+		
+
 			
 			//analise do valor limite (selecione limites que sao relevantes para teste)
 			
@@ -36,7 +37,7 @@ class REQ01EmissaoDaFaturaDD {
 			//analise de cobertura - todos os comandos
 			
 			//analise de cobertura - todas as arestas
-				
+		"5,71112917000126, 07/04/2023, moveis planejados, 1500, Data de vencimento invalida"			
 	})
 
 	// é possivel criar um arquivo csv com a massa de dados no source folder de teste

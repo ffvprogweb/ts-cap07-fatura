@@ -122,13 +122,13 @@ public class Fatura {
 
 	public BigDecimal setValorFatura(String entrada) {
 		try {
-			BigDecimal temp = new BigDecimal(entrada);
+			BigDecimal valorTemp = new BigDecimal(entrada);
 			BigDecimal zero = BigDecimal.ZERO;
-			if (temp.compareTo(zero) > 0) {
+			if (valorTemp.compareTo(zero) > 0) {
 				DecimalFormat formato = new DecimalFormat("#,##0.00");
-				String valorFormatado = formato.format(temp);
+				String valorFormatado = formato.format(valorTemp);
 				logger.info(">>>>>> valor formatado  =>" + valorFormatado);
-				return temp;
+				return valorTemp;
 			}else {
 				throw new IllegalArgumentException("Valor invalido");
 			}
@@ -149,6 +149,12 @@ public class Fatura {
 				throw new IllegalArgumentException("CNPJ invalido");
 			}
 		} catch (Exception e) {
+			StackTraceElement[] stack = e.getStackTrace();
+			String exception = "";
+			for (StackTraceElement s : stack) {
+		        exception = exception + s.toString() + "\n\t\t";
+		    }
+		    System.out.println(">>>>>>" + exception);
 			throw new IllegalArgumentException("CNPJ invalido");
 		}
 
@@ -161,7 +167,7 @@ public class Fatura {
 	public String setServicoContratado(String servico) {
 		if ((servico == null) || (servico.isBlank())) {
 			logger.info(">>>>>> setServicoContratado invalido ");
-			throw new IllegalArgumentException("Descriminacao do servico invalido");
+			throw new IllegalArgumentException("Descricao do servico invalido");
 		} else {
 			logger.info(">>>>>> setServicoContratado valido ");
 			return servico;
