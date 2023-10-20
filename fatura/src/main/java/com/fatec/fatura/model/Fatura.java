@@ -149,12 +149,6 @@ public class Fatura {
 				throw new IllegalArgumentException("CNPJ invalido");
 			}
 		} catch (Exception e) {
-			StackTraceElement[] stack = e.getStackTrace();
-			String exception = "";
-			for (StackTraceElement s : stack) {
-		        exception = exception + s.toString() + "\n\t\t";
-		    }
-		    System.out.println(">>>>>>" + exception);
 			throw new IllegalArgumentException("CNPJ invalido");
 		}
 
