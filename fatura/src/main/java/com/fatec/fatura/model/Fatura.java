@@ -115,7 +115,7 @@ public class Fatura {
 				return false;
 			}
 		} catch (Exception e) {
-			logger.info(">>>>>> data de venc maior que data atual erro nao esperado =>" + e.getMessage());
+			logger.info(">>>>>> metodo dtVencMaiorDtAtual() retornou erro nao esperado =>" + e.getMessage());
 			throw new IllegalArgumentException("Data invalida");
 		}
 	}
