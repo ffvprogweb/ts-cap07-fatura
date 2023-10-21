@@ -26,7 +26,7 @@ class REQ01EmissaoDaFaturaDD {
 	@ParameterizedTest
 	@CsvSource({
 			//classes de equivalencia pelo menos um valido e um invalido por atributo
-		"1,0, 20/12/2023, moveis planejados, 1000.59, satisfatorio",
+		"1,71112917000126, 20/12/2023, moveis planejados, 1000.59, satisfatorio",
 		"5,71112917000126, 07/04/2023, moveis planejados, 1500, Data de vencimento invalida"	
 			//analise do valor limite (selecione limites que sao relevantes para teste)
 			//teste funcional sistematico (2 ct por particao, obrigatorio branco, null e zero, 
